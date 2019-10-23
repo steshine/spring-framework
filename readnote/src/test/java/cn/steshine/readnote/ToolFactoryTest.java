@@ -1,0 +1,30 @@
+package cn.steshine.readnote;
+
+import org.hamcrest.core.IsEqual;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.annotation.Resource;
+
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
+
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = FactoryBeanConfig.class)
+class ToolFactoryTest {
+	@Autowired
+	private Tool tool;
+	@Resource(name = "&tool")
+	private ToolFactory toolFactory;
+
+	@Test
+	void getObject() {
+		assertThat(tool.getId(), equalTo(2));
+		assertThat(toolFactory.getFactoryId(), equalTo(7070));
+	}
+
+}

@@ -1,13 +1,17 @@
 pluginManagement {
 	repositories {
-		gradlePluginPortal()
+		maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+		maven{url 'https://maven.aliyun.com/repository/jcenter'}
+		maven{url 'https://maven.aliyun.com/repository/google'}
 		maven { url 'https://repo.spring.io/plugins-release' }
+	/*	gradlePluginPortal()
+		maven { url 'https://repo.spring.io/plugins-release' }*/
 	}
 }
 
 buildCache {
 	local {
-		enabled = true
+		enabled = false
 	}
 	remote(HttpBuildCache) {
 		enabled = false
@@ -44,3 +48,5 @@ rootProject.name = "spring"
 rootProject.children.each {project ->
 	project.buildFileName = "${project.name}.gradle"
 }
+include 'readnote'
+

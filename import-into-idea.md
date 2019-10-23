@@ -18,7 +18,8 @@ IntelliJ IDEA. See https://youtrack.jetbrains.com/issue/IDEA-64446 for details. 
 'spring-aspects' can be excluded from the project to avoid compilation errors.
 3. While JUnit tests pass from the command line with Gradle, some may fail when run from
 IntelliJ IDEA. Resolving this is a work in progress. If attempting to run all JUnit tests from within
-IntelliJ IDEA, you will likely need to set the following VM options to avoid out of memory errors:
+IntelliJ IDEA, you 
+ likely need to set the following VM options to avoid out of memory errors:
     -XX:MaxPermSize=2048m -Xmx2048m -XX:MaxHeapSize=2048m
 4. If you invoke "Rebuild Project" in the IDE, you'll have to generate some test
 resources of the `spring-oxm` module again (`./gradlew :spring-oxm:compileTestJava`)    

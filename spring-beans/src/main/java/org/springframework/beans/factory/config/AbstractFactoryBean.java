@@ -172,6 +172,7 @@ public abstract class AbstractFactoryBean<T>
 					getClass().getName() + " does not support circular references");
 		}
 		if (this.earlySingletonInstance == null) {
+			// 此处使用了代理类的对象实例，解决循环依赖问题
 			this.earlySingletonInstance = (T) Proxy.newProxyInstance(
 					this.beanClassLoader, ifcs, new EarlySingletonInvocationHandler());
 		}

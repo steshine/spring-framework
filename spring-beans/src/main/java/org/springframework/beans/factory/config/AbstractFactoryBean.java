@@ -163,6 +163,9 @@ public abstract class AbstractFactoryBean<T>
 	/**
 	 * Determine an 'early singleton' instance, exposed in case of a
 	 * circular reference. Not called in a non-circular scenario.
+	 *
+	 * 准备康康这个循环依赖问题是咋回事啊
+	 *
 	 */
 	@SuppressWarnings("unchecked")
 	private T getEarlySingletonInstance() throws Exception {

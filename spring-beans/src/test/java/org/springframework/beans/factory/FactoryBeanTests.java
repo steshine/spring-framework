@@ -46,7 +46,10 @@ public class FactoryBeanTests {
 	private static final Resource ABSTRACT_CONTEXT = qualifiedResource(CLASS, "abstract.xml");
 	private static final Resource CIRCULAR_CONTEXT = qualifiedResource(CLASS, "circular.xml");
 
-
+	/**
+	 * 简单bean创建
+	 * @throws Exception
+	 */
 	@Test
 	public void testFactoryBeanReturnsNull() throws Exception {
 		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
@@ -55,6 +58,13 @@ public class FactoryBeanTests {
 		assertThat(factory.getBean("factoryBean").toString()).isEqualTo("null");
 	}
 
+	/**
+	 * 自动注入对象的测试方法
+	 * 1.注入对象是深度优先遍历，一直遍历dependency 逐级创建所需对象
+	 * 2.获取Type的时候，会检查是否创建过了，没有就会创建对象
+	 * 3.DefaultListableBeanFactory 是一个很重要的实现
+	 * @throws Exception
+	 */
 	@Test
 	public void testFactoryBeansWithAutowiring() throws Exception {
 		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
@@ -76,6 +86,11 @@ public class FactoryBeanTests {
 		assertThat(beta.getName()).isEqualTo("yourName");
 	}
 
+	/**
+	 * 同样是使用上面测试方法的配置文件，这个获取获取beta Bean的时候，会找到所有包含类型是Beta的bean，初始化它。
+	 * 所以效果就是factory.getBean("beta"); 这行代码运行完之后，所有的bean都被初始化了
+	 * @throws Exception
+	 */
 	@Test
 	public void testFactoryBeansWithIntermediateFactoryBeanAutowiringFailure() throws Exception {
 		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
